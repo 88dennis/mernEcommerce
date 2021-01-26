@@ -1,0 +1,10 @@
+// User.deleteMany({}).then((user)=> {
+    //     res.json({
+    //         message: "deleted"
+    //     })
+    // })
+    // User.find({}).then((users)=> {
+    //     console.log(users)
+    //     res.json(users
+    //     )
+    // });

@@ -1,0 +1,75 @@
+Error handler method and UUID solution
+1. UUID ERROR
+Solution 1
+
+You will come across uuid error in coming lectures, please make sure to import this way to resolve the issue:
+
+const { v1: uuidv1 } = require('uuid');
+
+
+
+Solution 2
+
+Install new package uuidv1 from npm
+
+Run this command in your terminal from inside your project folder
+
+npm i uuidv1
+
+Now you can import and use in your controllers:
+
+let uuidv1 = require('uuidv1')
+ 
+console.log(uuidv1())
+
+
+2. Copy the code below, you will need it for the next lecture.
+
+
+"use strict";
+ 
+/**
+ * Get unique error field name
+ */
+const uniqueMessage = error => {
+    let output;
+    try {
+        let fieldName = error.message.substring(
+            error.message.lastIndexOf(".$") + 2,
+            error.message.lastIndexOf("_1")
+        );
+        output =
+            fieldName.charAt(0).toUpperCase() +
+            fieldName.slice(1) +
+            " already exists";
+    } catch (ex) {
+        output = "Unique field already exists";
+    }
+ 
+    return output;
+};
+ 
+/**
+ * Get the erroror message from error object
+ */
+exports.errorHandler = error => {
+    let message = "";
+ 
+    if (error.code) {
+        switch (error.code) {
+            case 11000:
+            case 11001:
+                message = uniqueMessage(error);
+                break;
+            default:
+                message = "Something went wrong";
+        }
+    } else {
+        for (let errorName in   error.errorors) {
+            if (error.errorors[errorName].message)
+                message = error.errorors[errorName].message;
+        }
+    }
+ 
+    return message;
+};
