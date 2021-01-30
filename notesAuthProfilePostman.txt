@@ -1,0 +1,19 @@
+
+FOR POSTMAN TESTING 
+
+GET REQUEST
+
+HEADERS
+KEY
+Authorization
+
+VALUE
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDEzODg2ZmY4MTg2NDJjNzNjOTBjNmQiLCJpYXQiOjE2MTE5MzQ1MTN9.ZsQcyjO9AB_xIxgkbCAKDTv9MlwkixYaHrfcsqZEvpI
+
+
+KEY
+Content-type
+
+
+VALUE
+Application/json

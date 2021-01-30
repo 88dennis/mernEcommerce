@@ -1,24 +1,28 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-//destructure and require from userController
-const { signup } = require("../controllers/userController");
-const { signin } = require("../controllers/userController");
 
-const { sayHi } = require("../controllers/userController");
-const { userSignupValidator } = require('../validator')
+//findById method will let you look for userId 
+const {
+  userById,
 
-console.log(userSignupValidator);
+} = require("../controllers/userController");
 
-router.get('/', sayHi);
+const {
+    requireSignin,
+    isAuth,
+    isAdmin
+  
+  } = require("../controllers/authController");
 
-router.post("/signup", userSignupValidator, signup);
+//you will include isAdmin to a route that is only accessible for admins
+router.get('/secret/:userId', requireSignin, isAuth, isAdmin, (req, res)=>{
+    res.json({
+        user: req.profile
+    })
+});
+
+//everytime there's a "userId" in the URL the userById method will run see the userController.js
+router.param('userId', userById);
 
 
-
-// router.post('/signup', signup);
-
-router.post('/signin', signin);
-
-
- 
 module.exports = router;

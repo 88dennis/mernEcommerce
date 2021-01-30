@@ -2,7 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
 //import the routes folder and its files here
+const authRoutes = require('./routes/authRoute');
 const userRoutes = require('./routes/userRoute');
+
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -49,7 +51,10 @@ app.use(cookieParser());
 app.use(expressValidator());
 //routes middleware
 //prepend /api as convention
+app.use('/api', authRoutes);
 app.use('/api', userRoutes);
+
+
 
 const port = process.env.PORT || 8000;
 
