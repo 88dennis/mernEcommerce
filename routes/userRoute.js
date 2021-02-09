@@ -2,10 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 //findById method will let you look for userId 
-const {
-  userById,
-
-} = require("../controllers/userController");
+const { userById } = require("../controllers/userController");
 
 const {
     requireSignin,

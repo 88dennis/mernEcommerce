@@ -4,6 +4,9 @@ require('dotenv').config();
 //import the routes folder and its files here
 const authRoutes = require('./routes/authRoute');
 const userRoutes = require('./routes/userRoute');
+const categoryRoutes = require('./routes/categoryRoute');
+const productRoutes = require('./routes/productRoute');
+
 
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
@@ -53,6 +56,10 @@ app.use(expressValidator());
 //prepend /api as convention
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
+app.use('/api', categoryRoutes);
+app.use('/api', productRoutes);
+
+
 
 
 
