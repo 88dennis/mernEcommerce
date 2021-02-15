@@ -1,10 +1,11 @@
 import React from 'react'
+import LayoutComp from '../core/LayoutComp';
 
 const SigninComp = () => {
     return (
-        <div>
-            Signin
-        </div>
+        <LayoutComp title='Sign In' description='Sign in and get started' >
+        .....Home Content
+    </LayoutComp>
     )
 }
 

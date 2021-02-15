@@ -1,10 +1,11 @@
 import React from 'react'
+import LayoutComp from '../core/LayoutComp';
 
 const SignupComp = () => {
     return (
-        <div>
-            Signup
-        </div>
+        <LayoutComp title='Sign Up' description='Create your account now and experience our shopping site' >
+        .....Signup
+    </LayoutComp>
     )
 }
 

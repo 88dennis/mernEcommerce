@@ -9,7 +9,6 @@ import MenuComp from "./core/MenuComp";
 const Routes = () => {
   return (
       <Router>
-          <MenuComp />
         <Switch>
           <Route path="/" exact component={HomeComp} />
           <Route path="/signin" exact component={SigninComp} />
