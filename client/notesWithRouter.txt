@@ -1,0 +1,28 @@
+import React, {useEffect}from 'react';
+import {Link, withRouter, useHistory, useLocation} from 'react-router-dom';
+
+const MenuComp = (props) => {
+console.log(props.history)
+
+const isActive = (history, path) =>{
+    console.log(path)
+    console.log(history)
+    if(history.location.pathname === path) {
+        return {color: "black"}
+    } else {
+        return {color: "white"}
+    }
+}
+
+    return (
+        <div>
+           <ul className="nav nav-tabs bg-primary">
+               {/* <li className="nav-item"><Link className="nav-link" style={isActive(props.history, "/")} to="/">Home</Link></li>
+               <li className="nav-item"><Link className="nav-link" style={isActive(props.history, "/signin")} to="/signin">Sign In</Link></li>
+               <li className="nav-item"><Link className="nav-link" style={isActive(props.history, "/signup")} to="/signup">Sign Up</Link></li> */}
+           </ul>
+        </div>
+    )
+}
+
+export default withRouter(MenuComp)
