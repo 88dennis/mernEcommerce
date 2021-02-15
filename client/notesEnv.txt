@@ -1,0 +1,3 @@
+you need to restart your server/ react when you create an env file
+
+https://www.youtube.com/watch?v=KJE4LtAxLEw

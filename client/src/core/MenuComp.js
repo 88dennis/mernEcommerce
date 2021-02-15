@@ -5,18 +5,18 @@ const MenuComp = (props) => {
 
 let historia = useLocation();
 
-console.log(historia)
+// console.log(historia)
 
 let color = "white";
 
 const isActive2 = (history, path) => {
-    console.log(history.pathname)
+    // console.log(history.pathname)
   if(history.pathname === path) {
         color = "white"
-        console.log(color)
+        // console.log(color)
     } else {
         color = "lightgray"
-        console.log(color)
+        // console.log(color)
     }
 }
 

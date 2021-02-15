@@ -8,18 +8,15 @@ const { errorHandler } = require("../helpers/dbErrorHandler");
 exports.signup = (req, res) => {
   console.log(req.body);
   const user = new User(req.body);
-
-  console.log(user, "ASDASDsd");
-
   user.save((err, user) => {
     if (err) {
       return res.status(400).json({
-        err: errorHandler(err),
+        error: errorHandler(err),
       });
     }
-    console.log(user);
     user.salt = undefined;
     user.hashed_password = undefined;
+    console.log(user, "SUCCESSSS");
     res.json(user);
   });
 };
@@ -46,7 +43,7 @@ exports.signin = async (req, res) => {
   await User.findOne({ email }, (err, user) => {
     if (err || !user) {
       return res.status(400).json({
-        err: "User with that email does not exist",
+        error: "User with that email does not exist",
       });
     }
 
