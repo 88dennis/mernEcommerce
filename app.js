@@ -7,7 +7,7 @@ const userRoutes = require('./routes/userRoute');
 const categoryRoutes = require('./routes/categoryRoute');
 const productRoutes = require('./routes/productRoute');
 
-
+const cors = require('cors');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -45,7 +45,8 @@ mongoose.connect(
     {
         useNewUrlParser: true, 
         useUnifiedTopology: true,
-        useCreateIndex: true
+        useCreateIndex: true,
+        useFindAndModify: false
     }
 )
 .then(() => console.log('DB Connected'))
@@ -55,6 +56,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(expressValidator());
+app.use(cors());
 //routes middleware
 //prepend /api as convention
 app.use('/api', authRoutes);
