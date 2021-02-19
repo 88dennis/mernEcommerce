@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import LayoutComp from "../core/LayoutComp";
-import { API } from "../config";
 import { values } from "lodash";
+import { signup } from "../authClient/authClient";
+
 
 const SignupComp = () => {
   const [state, setState] = useState({
@@ -25,24 +26,6 @@ const SignupComp = () => {
     };
   }
 
-  const signup = async (user) => {
-    //you need to return the fetch method to use it in another function / to make the promise available
-    return await fetch(`${API}/signup`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   const clickSubmit = (e) => {
     e.preventDefault();
     setState({
@@ -50,6 +33,7 @@ const SignupComp = () => {
       error: false,
     });
     //signup({ name: name, email: email, password: password})
+    //import signup function from authClient
     signup({ name, email, password }).then((data) => {
       console.log(data);
       if (data.error) {
@@ -86,7 +70,8 @@ const SignupComp = () => {
           <input
             type="text"
             onChange={handleChange("name")}
-            value={name}
+            //the || prevents the error for input controlled uncontrolled
+            value={name || ""}
             className="form-control"
           />
         </div>
@@ -95,7 +80,7 @@ const SignupComp = () => {
           <input
             type="email"
             onChange={handleChange("email")}
-            value={email}
+            value={email || ""}
             className="form-control"
           />
         </div>
@@ -104,7 +89,7 @@ const SignupComp = () => {
           <input
             type="password"
             onChange={handleChange("password")}
-            value={password}
+            value={password || ""}
             className="form-control"
           />
         </div>
@@ -132,7 +117,7 @@ const SignupComp = () => {
         className="alert alert-info"
         style={{ display: success ? "" : "none" }}
       >
-         Your account was created!{" "}<Link to="/signin">Please Signin</Link>
+        Your account was created! <Link to="/signin">Please Signin</Link>
       </div>
     );
   };

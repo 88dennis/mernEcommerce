@@ -3,7 +3,12 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import SignupComp from "./user/SignupComp";
 import SigninComp from "./user/SigninComp";
 import HomeComp from "./core/HomeComp";
-import MenuComp from "./core/MenuComp";
+import UserDashboard from "./user/UserDashboard";
+import AdminDashboard from "./user/AdminDashboard";
+
+import PrivateRoutes from "./authClient/PrivateRoutes";
+import AdminRoute from "./authClient/AdminRoute";
+
 
 
 const Routes = () => {
@@ -13,6 +18,9 @@ const Routes = () => {
           <Route path="/" exact component={HomeComp} />
           <Route path="/signin" exact component={SigninComp} />
           <Route path="/signup" exact component={SignupComp} />
+          <PrivateRoutes path="/user/dashboard" exact component={UserDashboard} />
+          <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
+
         </Switch>
       </Router>
   );
