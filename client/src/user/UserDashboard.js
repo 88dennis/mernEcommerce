@@ -53,10 +53,10 @@ const UserDashboard = () => {
         <LayoutComp title="Dashboard" description={`Hi ${name}!`} className="container"> 
         {/* mb margin-bottom 5 */}
           <div className="row">
-              <div className="col-xs-12 col-sm-12 col-md-3">
+              <div className="col-xs-12 col-sm-12 col-md-3 mb-5">
                 {userLinks()}
               </div>
-              <div className="col-xs-12 col-sm-12 col-md-9">
+              <div className="col-xs-12 col-sm-12 col-md-9 mb-5">
                   {userInfo()}
                   {purchaseHistory()}
               </div>

@@ -4,8 +4,8 @@ import {isAuthenticated} from './authClient';
 
 const PrivateRoutes = ({component: Component, ...rest }) => {
     return (
-        <Route {...rest} render={props => isAuthenticated() ? (<Component {...props} />) : (<Redirect to={{pathname: '/signin', state:{ from: props.location}}}/>)} />
+        <Route {...rest} render={props => isAuthenticated() && isAuthenticated().user.role === 0? (<Component {...props} />) : (<Redirect to={{pathname: '/signin', state:{ from: props.location}}}/>)} />
     )
-}
+}   
 
 export default PrivateRoutes

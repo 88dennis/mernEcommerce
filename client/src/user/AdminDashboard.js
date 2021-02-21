@@ -15,7 +15,7 @@ const AdminDashboard = () => {
                     Actions
                 </h4>
                 <ul className="list-group">
-                  <li className="list-group-item"><Link className="nav-link" to="/category/create">Create Category</Link></li>
+                  <li className="list-group-item"><Link className="nav-link" to="/create/category">Create Category</Link></li>
                   <li className="list-group-item"><Link className="nav-link" to="/product/create">Create Product</Link></li>
 
               </ul>
@@ -43,10 +43,10 @@ const AdminDashboard = () => {
         <LayoutComp title="Admin Dashboard" description={`Hi ${name}!`} className="container"> 
         {/* mb margin-bottom 5 */}
           <div className="row">
-              <div className="col-xs-12 col-sm-12 col-md-3">
+              <div className="col-xs-12 col-sm-12 col-md-3 mb-5">
                 {adminLinks()}
               </div>
-              <div className="col-xs-12 col-sm-12 col-md-9">
+              <div className="col-xs-12 col-sm-12 col-md-9 mb-5">
                   {adminInfo()}
               </div>
           </div>

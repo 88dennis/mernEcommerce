@@ -38,17 +38,31 @@ const MenuComp = (props) => {
           </Link>
         </li>
 
-       <li className="nav-item">
-          <Link
-            className="nav-link"
-            onClick={isActive2(historia, "/user/dashboard")}
-            style={{ color: color }}
-            to="/user/dashboard"
-          >
-            Dashboard
-          </Link>
-        </li> 
+       {isAuthenticated() && isAuthenticated().user.role === 0 && (
+         <li className="nav-item">
+         <Link
+           className="nav-link"
+           onClick={isActive2(historia, "/user/dashboard")}
+           style={{ color: color }}
+           to="/user/dashboard"
+         >
+           Dashboard
+         </Link>
+       </li> 
+       )}
 
+{isAuthenticated() && isAuthenticated().user.role === 1 && (
+         <li className="nav-item">
+         <Link
+           className="nav-link"
+           onClick={isActive2(historia, "/admin/dashboard")}
+           style={{ color: color }}
+           to="/admin/dashboard"
+         >
+           Dashboard
+         </Link>
+       </li> 
+       )}
         {!isAuthenticated() && (
           <>
             <li className="nav-item">

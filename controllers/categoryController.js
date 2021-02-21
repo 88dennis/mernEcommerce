@@ -35,6 +35,7 @@ exports.create =  async (req, res) => {
 
             })
         }
+        console.log(data)
         res.json({data});
     })
   
