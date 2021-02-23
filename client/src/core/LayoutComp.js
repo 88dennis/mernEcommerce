@@ -7,7 +7,7 @@ const LayoutComp = ({title='Title', description='Description', className, childr
             <MenuComp />
             <div className='jumbotron'>
                 <h2>{title}</h2>
-                <p className='lead'>{description}</p>
+                <p>{description}</p>
             </div>
             <div className={className}>{children}</div>
         </div>

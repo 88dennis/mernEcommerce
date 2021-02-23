@@ -11,9 +11,9 @@ const UserDashboard = () => {
     const userLinks = () => {
         return (
             <div className="card">
-                <h4 className="card-header">
+                <h3 className="card-header">
                     Actions
-                </h4>
+                </h3>
                 <ul className="list-group">
                   <li className="list-group-item"><Link className="nav-link" to="/cart">My Cart</Link></li>
                   <li className="list-group-item"><Link className="nav-link" to="/profile/update">Update Profile</Link></li>
@@ -41,7 +41,7 @@ const UserDashboard = () => {
         return (
              
             <div className="card mb-5">
-              <h4 className='card-header'>Purchase History</h4>
+              <h3 className='card-header'>Purchase History</h3>
                 <ul className="list-group">
                 <li className="list-group-item">history</li>
                 </ul>
