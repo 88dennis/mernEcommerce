@@ -25,7 +25,7 @@ const AdminDashboard = () => {
 
     const adminInfo = () => {
         return (
-            <div class="card mb-5">
+            <div className="card mb-5">
             <h4 className='card-header'>Information</h4>
             <ul className="list-group">
                 <li className="list-group-item">{name}</li>

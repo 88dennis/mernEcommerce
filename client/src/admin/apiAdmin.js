@@ -40,3 +40,15 @@ export const createCategory = async (userId, token, category) => {
         console.log(err);
       });
   };
+
+
+
+  export const getCategories = async () => {
+    return await fetch(`${API}/categories`, {
+        method: 'GET'
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};

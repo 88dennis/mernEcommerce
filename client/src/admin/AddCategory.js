@@ -40,7 +40,7 @@ const AddCategory = () => {
     return (
       <form onSubmit={clickSubmit}>
         <div className="form-group">
-          <label className="text-muted">Name</label>
+          <label className="text-muted">Category Name</label>
           <input
             type="text"
             className="form-control"
@@ -70,9 +70,9 @@ const AddCategory = () => {
   };
 
   const goBack = () => {
-   return <div className="mt-5">
-      <Link to="/admin/dashboard" className="text-secondary">Back to Dashboard</Link>
-    </div>
+   return <span className="mt-5">
+      <Link to="/admin/dashboard" className="text-secondary">Dashboard</Link>{" "}
+    </span>
   };
   return (
     <LayoutComp
@@ -86,7 +86,8 @@ const AddCategory = () => {
           {showSuccess()}
           {showError()}
           {newCategoryForm()}
-          {goBack()}
+          <br/>
+          {goBack()} {" "}<span ><Link to='/create/product' className="text-primary">| Post a Product</Link></span>
         </div>
       </div>
     </LayoutComp>

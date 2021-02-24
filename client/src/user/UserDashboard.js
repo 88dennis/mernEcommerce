@@ -25,7 +25,7 @@ const UserDashboard = () => {
 
     const userInfo = () => {
         return (
-            <div class="card mb-5">
+            <div className="card mb-5">
             <h3 className='card-header'>Info</h3>
             <ul className="list-group">
                 <li className="list-group-item">{name}</li>
