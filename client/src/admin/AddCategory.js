@@ -82,7 +82,7 @@ const AddCategory = () => {
       description={`Hi ${isAuthenticated().user.name}, add your category here`}
       className="container"
     >
-      <div className="row">
+      {/* <div className="row"> */}
         <div className="col-md-8 offset-md-2">
          
           {showSuccess()}
@@ -91,7 +91,7 @@ const AddCategory = () => {
           <br/>
           {goBack()} {" "}<span ><Link to='/create/product' className="text-primary">| Post a Product</Link></span>
         </div>
-      </div>
+      {/* </div> */}
     </LayoutComp>
   );
 };

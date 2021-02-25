@@ -255,15 +255,16 @@ const AddProduct = () => {
     <Layout
       title="Post a new product"
       description={`Hey ${user.name}, ready to add a new product?`}
+      
     >
-      <div className="row">
+      {/* <div className="row"> */}
         <div className="col-md-8 offset-md-2">
           {showLoading()}
           {showSuccess()}
           {showError()}
           {newPostForm()}
         </div>
-      </div>
+      {/* </div> */}
     </Layout>
   );
 };
