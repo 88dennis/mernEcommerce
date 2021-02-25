@@ -27,6 +27,18 @@ exports.categoryById = (req, res, next, id) => {
 
 exports.create =  async (req, res) => {
     console.log(req.body);
+
+
+    const { name } = req.body;
+
+    if (
+      !name
+    ) {
+      return res.status(400).json({
+        error: "All fields are required",
+      });
+    }
+
      const newCategory = new Category(req.body);
      await newCategory.save((err, data)=>{
         if(err) {

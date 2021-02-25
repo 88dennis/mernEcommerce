@@ -3,6 +3,7 @@ import LayoutComp from "../core/LayoutComp";
 import { isAuthenticated } from "../authClient/authClient";
 import { Link } from "react-router-dom";
 import { createCategory } from "./apiAdmin";
+import "./AddCategory.css";
 
 const AddCategory = () => {
   const [name, setName] = useState("");
@@ -47,11 +48,11 @@ const AddCategory = () => {
             onChange={handleChange}
             value={name || ""}
             autoFocus
-            required
+            // required
           />
           {/* <br/> */}
         </div>
-        <button className="btn btn-outline-primary">Create Category</button>
+        <button className="btn border my_addcategorycomp">Create Category</button>
       </form>
     );
   };
@@ -65,7 +66,8 @@ const AddCategory = () => {
   };
   const showError = () => {
     if (error) {
-      return <h6 className="text-danger">{displayName} should be unique</h6>;
+      let str = error;
+      return <h6 className="text-danger">{displayName}  {str.includes('duplicate') ? "was already created": error}</h6>;
     }
   };
 

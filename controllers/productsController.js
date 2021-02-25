@@ -172,6 +172,9 @@ exports.update = (req, res) => {
   //if no params are sent then all products are returned
 
   exports.list = async (req, res)=>{
+    console.log(req.query, "QUERY!!!!!!");
+  //QUERY PARAMETERS CAN BE IN ANY ARRANGEMENT ON THE URL
+
     let order = req.query.order ? req.query.order : 'asc';
     let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
     let limit = req.query.limit ? parseInt(req.query.limit) : 6;

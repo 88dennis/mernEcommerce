@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import 'bootstrap-material-design/dist/css/bootstrap-material-design.css'
+// import 'bootstrap/dist/css/bootstrap.css';
+
 import { Link, Redirect } from "react-router-dom";
 import LayoutComp from "../core/LayoutComp";
 import { values } from "lodash";
 import { signin, authenticate, isAuthenticated} from "../authClient/authClient";
+import "./SigninSignupComp.css";
 
 
 const SigninComp = () => {
@@ -74,16 +78,21 @@ const SigninComp = () => {
             className="form-control"
           />
         </div>
+
+
+
         <div className="form-group">
           <label className="text-muted">Password</label>
           <input
             type="password"
             onChange={handleChange("password")}
             value={password || ""}
-            className="form-control"
+            className="form-control dark"
           />
+             <span className="bmd-help">We'll never share your email with anyone else.</span>
+    <span className="bmd-help">And this is probably from a second plugin showing in a non-optimal way</span>
         </div>
-        <button type="submit" onClick={clickSubmit} className="btn btn-primary">
+        <button type="submit" onClick={clickSubmit} className="my_signinsignupcomp_btn btn border border-dark">
           Submit
         </button>
       </form>

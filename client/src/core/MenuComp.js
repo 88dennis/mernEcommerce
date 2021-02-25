@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, withRouter, useHistory, useLocation } from "react-router-dom";
 import { signout, isAuthenticated } from "../authClient/authClient";
+import "./MenuComp.css";
 
 const MenuComp = (props) => {
   let historia = useLocation();
@@ -26,7 +27,7 @@ const MenuComp = (props) => {
 
   return (
     <div>
-      <ul className="nav nav-tabs bg-primary">
+      <ul className="nav nav-tabs my_menucomp_nav">
         <li className="nav-item">
           <Link
             className="nav-link"

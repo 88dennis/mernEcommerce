@@ -115,111 +115,115 @@ const AddProduct = () => {
   };
 
   const newPostForm = () => {
-
-    if(categories.length === 0){
-        return    <>
-        <p>No Categories yet. Please Create a Category.</p>
-        <br/>
-        <Link to="/create/category" className="text-primary">
-         Create a Category
-      </Link></>
+    if (categories.length === 0) {
+      return (
+        <>
+          <p>No Categories yet. Please Create a Category.</p>
+          <br />
+          <Link to="/create/category" className="text-primary">
+            Create a Category
+          </Link>
+        </>
+      );
     }
-   return <div className="container">
-      <form className="mb-3" onSubmit={clickSubmit}>
-        <div className="form-group">
-          <label className="text-muted">Category</label>
-          <select
-            id="categorySelectId"
-            onChange={handleChange("category")}
-            className="form-control"
-          >
-            <option value="">Please select</option>
-            {categories &&
-              categories.map((c, i) => (
-                <option key={i} value={c._id}>
-                  {c.name}
-                </option>
-              ))}
-          </select>
-        </div>
+    return (
+      <div className="container">
+        <form className="mb-3" onSubmit={clickSubmit}>
+          <div className="form-group">
+            <label className="text-muted">Category</label>
+            <select
+              id="categorySelectId"
+              onChange={handleChange("category")}
+              className="form-control"
+            >
+              <option value="">Please select</option>
+              {categories &&
+                categories.map((c, i) => (
+                  <option key={i} value={c._id}>
+                    {c.name}
+                  </option>
+                ))}
+            </select>
+          </div>
 
-        <Link to="/create/category" className="text-primary">
-          New Category? Click Here
-        </Link>
+          <Link to="/create/category" className="text-primary">
+            New Category? Click Here
+          </Link>
 
-        <br />
-        <br />
+          <br />
+          <br />
 
-        <div className="form-group">
-          <label className="text-muted">Name</label>
-          <input
-            onChange={handleChange("name")}
-            type="text"
-            className="form-control"
-            value={name}
-          />
-        </div>
-
-        <div className="form-group">
-          <label className="text-muted">Description</label>
-          <textarea
-            onChange={handleChange("description")}
-            className="form-control"
-            value={description}
-          />
-        </div>
-
-        <div className="form-group">
-          <label className="text-muted">Price</label>
-          <input
-            onChange={handleChange("price")}
-            type="number"
-            className="form-control"
-            value={price}
-          />
-        </div>
-
-        <div className="form-group">
-          <label className="text-muted">Shipping</label>
-          <select
-            id="shippingSelectId"
-            onChange={handleChange("shipping")}
-            className="form-control"
-          >
-            <option value="">Please select</option>
-            <option value="0">No</option>
-            <option value="1">Yes</option>
-          </select>
-        </div>
-
-        <div className="form-group">
-          <label className="text-muted">Quantity</label>
-          <input
-            onChange={handleChange("quantity")}
-            type="number"
-            className="form-control"
-            value={quantity}
-          />
-        </div>
-
-        <p className="text-primary">Post a Photo</p>
-
-        <div className="form-group">
-          <label htmlFor="fileUpload" className="btn btn-secondary">
+          <div className="form-group">
+            <label className="text-muted">Name</label>
             <input
-              id="fileUpload"
-              onChange={handleChange("photo")}
-              type="file"
-              name="photo"
-              accept="image/*"
+              onChange={handleChange("name")}
+              type="text"
+              className="form-control"
+              value={name}
             />
-          </label>
-        </div>
-        <br />
-        <button className="btn btn-outline-primary">Post Product</button>
-      </form>
-    </div>
-};
+          </div>
+
+          <div className="form-group">
+            <label className="text-muted">Description</label>
+            <textarea
+              onChange={handleChange("description")}
+              className="form-control"
+              value={description}
+            />
+          </div>
+
+          <div className="form-group">
+            <label className="text-muted">Price</label>
+            <input
+              onChange={handleChange("price")}
+              type="number"
+              className="form-control"
+              value={price}
+            />
+          </div>
+
+          <div className="form-group">
+            <label className="text-muted">Shipping</label>
+            <select
+              id="shippingSelectId"
+              onChange={handleChange("shipping")}
+              className="form-control"
+            >
+              <option value="">Please select</option>
+              <option value="0">No</option>
+              <option value="1">Yes</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label className="text-muted">Quantity</label>
+            <input
+              onChange={handleChange("quantity")}
+              type="number"
+              className="form-control"
+              value={quantity}
+            />
+          </div>
+
+          <p className="text-primary">Post a Photo</p>
+
+          <div className="form-group">
+            <label htmlFor="fileUpload" className="btn btn-secondary">
+              <input
+                id="fileUpload"
+                onChange={handleChange("photo")}
+                type="file"
+                name="photo"
+                accept="image/*"
+              />
+            </label>
+          </div>
+          <br />
+          <button className="btn btn-outline-primary">Post Product</button>
+        </form>
+      </div>
+    );
+  };
 
   const showError = () => (
     <div
@@ -246,7 +250,6 @@ const AddProduct = () => {
         <h2>Loading...</h2>
       </div>
     );
-
 
   return (
     <Layout

@@ -1,0 +1,35 @@
+.my_signinsignupcomp_btn.btn {
+    border-radius: 50px;
+    background-color: white;
+    color: black;
+}
+
+.my_signinsignupcomp_btn.btn:hover {
+    color: white;
+    background-color: black;
+}
+
+
+/* .form-group input[type=email]:focus {
+    color: black;
+    box-shadow: 0 1px 0 0 black !important;
+    border-bottom: 1px solid black !important;
+} */
+
+
+/* 
+input[type=email]:focus:not([readonly]),
+input[type=datetime-local]:focus:not([readonly]),
+input[type=email]:focus:not([readonly]),
+input[type=number]:focus:not([readonly]),
+input[type=password]:focus:not([readonly]),
+input[type=search-md]:focus:not([readonly]),
+input[type=search]:focus:not([readonly]),
+input[type=tel]:focus:not([readonly]),
+input[type=text]:focus:not([readonly]),
+input[type=time]:focus:not([readonly]),
+input[type=url]:focus:not([readonly]),
+textarea.md-textarea:focus:not([readonly]) {
+    border-bottom: 5px solid black;
+    box-shadow: 0 1px 0 0 #4285F4;
+} */

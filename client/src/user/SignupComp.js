@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import LayoutComp from "../core/LayoutComp";
 import { values } from "lodash";
 import { signup } from "../authClient/authClient";
+import "./SigninSignupComp.css";
 
 
 const SignupComp = () => {
@@ -93,7 +94,7 @@ const SignupComp = () => {
             className="form-control"
           />
         </div>
-        <button type="submit" onClick={clickSubmit} className="btn btn-primary">
+        <button type="submit" onClick={clickSubmit} className="btn my_signinsignupcomp_btn">
           Submit
         </button>
       </form>
