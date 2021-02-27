@@ -1,6 +1,8 @@
 https://www.npmjs.com/package/mdbreact
 
 
+npm install bootstrap-material-design@4.1.1
+
 https://mdbootstrap.github.io/bootstrap-material-design/docs/4.0/material-design/forms/#form-groups
 
 
@@ -24,3 +26,8 @@ https://mdbootstrap.github.io/bootstrap-material-design/docs/4.0/material-design
 </div>
 
                        <Link to="/"><button className="btn btn-outline-primary mt-2 mb-2 btn-block btn-sm responsive-width">View Product</button></Link>
+
+
+breakpoints
+
+https://mdbootstrap.com/docs/standard/layout/breakpoints/
