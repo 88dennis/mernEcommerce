@@ -1,85 +1,106 @@
-import React, {useState, useEffect} from 'react'
-import LayoutComp from './LayoutComp';
-import {API} from '../config';
+import React, { useState, useEffect } from "react";
+import LayoutComp from "./LayoutComp";
+import { API } from "../config";
 import { getProducts } from "./apiCore";
-import CardComp from './CardComp';
-
+import CardComp from "./CardComp";
 
 const HomeComp = () => {
+  const [productsBySell, setProductsBySell] = useState([]);
+  const [productsByArrival, setProductsByArrival] = useState([]);
+  const [error, setError] = useState([]);
 
-    const [productsBySell, setProductsBySell] = useState([]);
-    const [productsByArrival, setProductsByArrival] = useState([]);
-    const [error, setError] = useState([]);
+  useEffect(() => {
+    getProducts("sold").then((data) => {
+      if (data && data.error) {
+        setError(data.error);
+      } else if (data) {
+        setProductsBySell(data);
+      }
+    });
 
-
-    useEffect(()=>{
-        getProducts('sold').then(data => {
-            if(data.error){
-                setError(data.error)
-            } else {
-                setProductsBySell(data);
-            }
-        });
-
-        getProducts('createdAt').then(data => {
-            if(data.error){
-                setError(data.error)
-            } else {
-                setProductsByArrival(data);
-            }
-        });
-
-    },[])
-
-    console.log(productsBySell)
-    console.log(productsByArrival)
-
- 
-    const noProductsBySell = !productsBySell || (productsBySell && productsBySell.length === 0);
+    getProducts("createdAt").then((data) => {
+      if (data && data.error) {
+        setError(data.error);
+      } else if (data) {
+        setProductsByArrival(data);
+      }
+    });
 
 
-    return (
-        <LayoutComp title='Home Page' description='Node React Ecommerce App' >
-    {/* {noProductsBySell && <div><p>No products yet</p></div> } */}
-    {/* {!noProductsBySell && <div><p>{JSON.stringify(productsBySell,undefined, 2)}</p></div> } */}
+  }, []);
 
-    {/* <hr/> */}
-    {/* {!noProductsBySell && <div><p>{JSON.stringify(productsByArrival)}</p></div> } */}
+  console.log(productsBySell);
+  console.log(productsByArrival);
 
+  const noProductsBySell =
+    !productsBySell || (productsBySell && productsBySell.length === 0);
+  const noProductsByArrival =
+    !productsByArrival || (productsByArrival && productsByArrival.length === 0);
 
-<div className="container">
-<h4 className="mb-4">Best Sellers</h4>
+  function noSold() {
+    let totalSold = 0;
+    if (!noProductsByArrival) {
+      productsByArrival.map((item) => {
+        totalSold = totalSold + item.sold;
+      });
+    }
 
-    <div className="row">
-    {!noProductsBySell &&  productsBySell.map((product)=> <CardComp
-    key={product._id}
-    product={product}
-    /> )}
+    if (totalSold === 0) {
+      return true;
+    }
 
-    </div>
-</div>
-<br/>
-<hr/>
-<br/>
+    return false;
+  };
 
-<div className="container">
-<h4 className="mb-4">New Arrivals</h4>
+  // console.log(noSold())
 
-    <div className="row">
-    {!noProductsBySell &&  productsByArrival.map((product)=> <CardComp
-    key={product._id}
-    product={product}
-    /> )}
+  return (
+    <LayoutComp
+      title="Home Page"
+      description="Node React Ecommerce App"
+      className="container-fluid"
+    >
+      {/* {noProductsBySell && <div><p>No products yet</p></div> } */}
+      {/* {!noProductsBySell && <div><p>{JSON.stringify(productsBySell,undefined, 2)}</p></div> } */}
 
-    </div>
-</div>
- 
-            
+      {/* <hr/> */}
+      {/* {!noProductsBySell && <div><p>{JSON.stringify(productsByArrival)}</p></div> } */}
 
+      {/* <div className="container"> */}
+      {!noSold() && (
+        <>
+          <h4 className="mb-4">Best Sellers</h4>
+          <div className="row">
+            {!noProductsBySell &&
+              productsBySell.map((product) => (
+                <CardComp
+                  key={product._id}
+                  product={product.sold === 0 ? null : product}
+                />
+              ))}
+          </div>
+          <br />
+      <hr />
+      <br />
+        </>
+      )}
+      {/* </div> */}
+      
 
-            {/* {API} */}
-        </LayoutComp>
-    )
-}
+      {/* <div className="container"> */}
+      <h4 className="mb-4">New Arrivals</h4>
 
-export default HomeComp
+      <div className="row">
+        {!noProductsByArrival &&
+          productsByArrival.map((product) => (
+            <CardComp key={product._id} product={product} />
+          ))}
+      </div>
+      {/* </div>   */}
+
+      {/* {API} */}
+    </LayoutComp>
+  );
+};
+
+export default HomeComp;

@@ -5,12 +5,14 @@ import { getProducts } from "./apiCore";
 import { Link } from "react-router-dom";
 
 const CardComp = ({ product }) => {
-  return (
 
-        <div className="col-6 col-md-4 mb-2">
+  const noProduct = product ? false : true;
+  return (
+<>
+       {!noProduct && <div className="col-12 col-md-4 mb-2">
         {/* 50% on mobile (6/12 and on desktop (3/12)) */}
 
-          <div className="card" style={{ "min-width": "250px" }}>
+          <div className="card" style={{ "minWidth": "250px" }}>
 
             <h5 className="card-header">{product.name}</h5>
             
@@ -33,8 +35,8 @@ const CardComp = ({ product }) => {
           </div>
 
           
-        </div>
-
+        </div>}
+</>
  
   );
 };
