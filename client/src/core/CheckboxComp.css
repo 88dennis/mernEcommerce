@@ -1,0 +1,14 @@
+.list_nostyle {
+    list-style: none;
+}
+
+.container input[type=checkbox]+label {
+    color: rgb(39, 38, 38);
+    font-style: italic;
+}
+
+.container input[type=checkbox]:checked+label {
+    color: #006666;
+    font-weight: bold;
+    font-style: normal;
+}

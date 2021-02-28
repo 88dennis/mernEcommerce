@@ -12,7 +12,7 @@ const CardComp = ({ product }) => {
   const noProduct = product ? false : true;
   return (
 <>
-       {!noProduct && <div className="col-12 col-md-4 mb-2">
+       {!noProduct && <div className="col-12 col-sm-4 mb-2">
         {/* 50% on mobile (6/12 and on desktop (3/12)) */}
 
           <div className="card" style={{ minWidth: "250px"}}>
