@@ -6,14 +6,17 @@ import "./MenuComp.css";
 import logo from "../images/BasicGoodz134133websmall.png";
 
 const MenuComp = (props) => {
+  const [scrolling, setScrolling] = useState(false);
+  const [scrollTop, setScrollTop] = useState(0);
+  // const [scroll, setScroll] = useState(0);
 
 
-  const [state, setState] = useState({
-    prevScrollpos: window.pageYOffset,
-    visible: true
-  });
-  // const [prevScrollpos, setPrevScrollpos] = useState(window.pageYOffset);
-  
+  let historia = useLocation();
+  let historyMethod = useHistory();
+  let color = "white";
+  console.log(historyMethod);
+  console.log(historia);
+
   const styleVisible = {
     top: "0",
     transition:"all .3s ease"
@@ -24,47 +27,33 @@ const MenuComp = (props) => {
     transition:"all .3s ease"
   }
 
-  const handleScroll = () => {
-    const { prevScrollpos } = state;
+useEffect(() => {
+  const onScroll = e => {
+    setScrollTop(e.target.documentElement.scrollTop);
+    // setScroll(window.pageYOffset);
+    setScrolling(e.target.documentElement.scrollTop > scrollTop);
 
-    const currentScrollPos = window.pageYOffset;
-    console.log(prevScrollpos, "PREV")
-    console.log(currentScrollPos)
-
-    // const visible = prevScrollpos > currentScrollPos;
-    // console.log(visible)
-    if(prevScrollpos < currentScrollPos && currentScrollPos > 30){
-      setState({
-        // prevScrollpos: currentScrollPos,
-        visible: false
-      });
-    } else {
-      setState({
-        // prevScrollpos: currentScrollPos,
-        visible: true
-      });
-    }
-
-   
   };
+  window.addEventListener("scroll", onScroll);
+  return () => window.removeEventListener("scroll", onScroll);
+}, [scrollTop]);
 
-useEffect(()=>{
-  window.addEventListener("scroll", handleScroll);
-  return () => {
-  window.removeEventListener("scroll", handleScroll);
+console.log(scrolling);
+console.log(scrollTop);
+// console.log(scroll, "hehehe");
+
+
+
+const isScrolling = () => {
+  if(scrolling && scrollTop > 30){
+    // setShowNav(false);
+    return true;
+  } else {
+    // setShowNav(true);
+    return false;
+
   }
-},[])
-
-  let historia = useLocation();
-
-  let historyMethod = useHistory();
-
-
-  console.log(historyMethod);
-
-  console.log(historia);
-
-  let color = "white";
+}
 
   const isActive2 = (history, path) => {
     // console.log(history.pathname)
@@ -79,22 +68,9 @@ useEffect(()=>{
     }
   };
 
-  // var prevScrollpos = window.pageYOffset;
-  // window.onscroll = function () {
-  //   var currentScrollPos = window.pageYOffset;
-  //   if (prevScrollpos > (currentScrollPos)) {
-  //     document.getElementById("navbar").style.top = "0";
-  //     // document.getElementById("navbar").style.transition = "all .3s ease";
-  //   } else {
-  //     document.getElementById("navbar").style.top = "-70px";
-  //     document.getElementById("navbar").style.transition = "all .3s ease";
-  //   }
-  //   prevScrollpos = currentScrollPos;
-  // };
-
   return (
     <>
-    <ul id="navbar" style={state.visible ? styleVisible : styleNotVisible} className="nav nav-tabs my_menucomp_nav navbar-fixed-top">
+    <ul id="navbar" style={isScrolling() ? styleNotVisible : styleVisible} className="nav nav-tabs my_menucomp_nav navbar-fixed-top">
         <li
           className="nav-item"
           style={{
