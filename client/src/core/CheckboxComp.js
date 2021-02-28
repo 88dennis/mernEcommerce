@@ -1,28 +1,27 @@
 import React, { useState } from "react";
 import "./CheckboxComp.css";
 
-const CheckboxComp = ({ categories }) => {
+const CheckboxComp = ({ categories, handleFiltersArr }) => {
   const [checked, setChecked] = useState([]);
 
   const handleToggle = (c) => () => {
     // return the first index or -1
     const currentCategoryId = checked.indexOf(c);
-    const newCheckedCategoryId = [...checked];
+    const newCheckedCategoryIdArr = [...checked];
     // if currently checked was not already in checked state > push
     // else pull/take off
     if (currentCategoryId === -1) {
-      newCheckedCategoryId.push(c);
+      newCheckedCategoryIdArr.push(c);
     } else {
-      newCheckedCategoryId.splice(currentCategoryId, 1);
+      newCheckedCategoryIdArr.splice(currentCategoryId, 1);
     }
-    console.log(newCheckedCategoryId);
-    setChecked(newCheckedCategoryId);
-    // handleFilters(newCheckedCategoryId);
+    console.log(newCheckedCategoryIdArr);
+    setChecked(newCheckedCategoryIdArr);
+    handleFiltersArr(newCheckedCategoryIdArr);
   };
   const noCategories = !categories || (categories && categories.length === 0);
   return (
     <>
-      {" "}
       {!noCategories &&
         categories.map((c, i) => (
           <li key={c._id} className="list-unstyled">
@@ -37,7 +36,7 @@ const CheckboxComp = ({ categories }) => {
             </div>
           </li>
         ))}
-      ;
+      
     </>
   );
 };
