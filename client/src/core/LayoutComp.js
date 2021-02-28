@@ -5,7 +5,7 @@ const LayoutComp = ({title='Title', description='Description', className, childr
     return (
         <div>
             <MenuComp />
-            <div className='jumbotron' style={{marginTop: "60px"}}>
+            <div className='jumbotron' style={{marginTop: "55px"}}>
                 <h2>{title}</h2>
                 <p>{description}</p>
             </div>

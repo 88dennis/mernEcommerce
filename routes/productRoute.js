@@ -15,6 +15,8 @@ router.put('/product/update/:productId/:userId', requireSignin, isAuth, isAdmin,
 router.get('/products', list);
 router.get('/products/related/:productId', listRelated);
 router.get('/products/categories', listProductsCategories);
+router.get('/product/photo/:productId', photo);
+
 
 /**
  * list products by search

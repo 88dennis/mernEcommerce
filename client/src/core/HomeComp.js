@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import LayoutComp from "./LayoutComp";
-import { API } from "../config";
 import { getProducts } from "./apiCore";
 import CardComp from "./CardComp";
 
@@ -9,23 +8,28 @@ const HomeComp = () => {
   const [productsByArrival, setProductsByArrival] = useState([]);
   const [error, setError] = useState([]);
 
+
+  async function init(){
+
+    await getProducts("sold").then((data) => {
+        if (data && data.error) {
+          setError(data.error);
+        } else if (data) {
+          setProductsBySell(data);
+        }
+      });
+  
+      await getProducts("createdAt").then((data) => {
+        if (data && data.error) {
+          setError(data.error);
+        } else if (data) {
+          setProductsByArrival(data);
+        }
+      });
+  }
   useEffect(() => {
-    getProducts("sold").then((data) => {
-      if (data && data.error) {
-        setError(data.error);
-      } else if (data) {
-        setProductsBySell(data);
-      }
-    });
 
-    getProducts("createdAt").then((data) => {
-      if (data && data.error) {
-        setError(data.error);
-      } else if (data) {
-        setProductsByArrival(data);
-      }
-    });
-
+    init();
 
   }, []);
 
@@ -88,14 +92,16 @@ const HomeComp = () => {
       
 
       {/* <div className="container"> */}
+      {!noProductsByArrival &&  <>
       <h4 className="mb-4">New Arrivals</h4>
 
       <div className="row">
-        {!noProductsByArrival &&
-          productsByArrival.map((product) => (
+          {!noProductsByArrival &&  productsByArrival.map((product) => (
             <CardComp key={product._id} product={product} />
           ))}
       </div>
+
+      </>}
       {/* </div>   */}
 
       {/* {API} */}

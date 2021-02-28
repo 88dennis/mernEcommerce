@@ -63,6 +63,28 @@ const MenuComp = (props) => {
           </Link>
         </li>
 
+
+
+        <li
+          className="nav-item"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Link
+            className="nav-link"
+            onClick={isActive2(historia, "/shop")}
+            style={{ color: color }}
+            to="/shop"
+          >
+          Shop
+          </Link>
+        </li>
+
+
         {isAuthenticated() && isAuthenticated().user.role === 0 && (
           <li className="nav-item">
             <Link
@@ -71,7 +93,8 @@ const MenuComp = (props) => {
               style={{ color: color }}
               to="/user/dashboard"
             >
-              Dashboard
+            {isAuthenticated().user.role === 1 ? "SETUP" : "USER"}
+
             </Link>
           </li>
         )}
@@ -84,7 +107,7 @@ const MenuComp = (props) => {
               style={{ color: color }}
               to="/admin/dashboard"
             >
-              Dashboard
+              {isAuthenticated().user.role === 1 ? "SETUP" : "USER"}
             </Link>
           </li>
         )}

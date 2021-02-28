@@ -67,12 +67,12 @@ const AddProduct = () => {
           if (data.error) {
             setValues({ ...values, error: data.error });
           } else {
-            setValues({
+          setValues({
               ...values,
               categories: data,
               formData: new FormData(),
             });
-          }
+          } 
         });
       }
     }

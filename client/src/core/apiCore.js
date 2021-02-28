@@ -14,6 +14,18 @@ export const getProducts = async (sortBy) => {
       .catch(err => console.log(err));
 };
 
+
+
+export const getCategories = async () => {
+  return await fetch(`${API}/categories`, {
+      method: 'GET'
+  })
+      .then(response => {
+          return response.json();
+      })
+      .catch(err => console.log(err));
+};
+
 export const createCategory = async (userId, token, category) => {
     //you need to return the fetch method to use it in another function / to make the promise available
     console.log(category, "FROM API ADMIN");
