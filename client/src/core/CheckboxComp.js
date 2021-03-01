@@ -15,7 +15,7 @@ const CheckboxComp = ({ categories, handleFiltersArr }) => {
     } else {
       newCheckedCategoryIdArr.splice(currentCategoryId, 1);
     }
-    console.log(newCheckedCategoryIdArr);
+    // console.log(newCheckedCategoryIdArr);
     setChecked(newCheckedCategoryIdArr);
     handleFiltersArr(newCheckedCategoryIdArr);
   };
@@ -24,8 +24,10 @@ const CheckboxComp = ({ categories, handleFiltersArr }) => {
     <>
       {!noCategories &&
         categories.map((c, i) => (
-          <li key={c._id} className="list-unstyled">
+          <div key={c._id} className="list-unstyled">
             <div className="container mb-2 mt-2 form-check">
+            <div className="container mb-2 mt-2 form-check">
+
               <input
                 onChange={handleToggle(c._id)}
                 value={checked.indexOf(c._id === -1)}
@@ -34,7 +36,9 @@ const CheckboxComp = ({ categories, handleFiltersArr }) => {
               />
               <label className="form-check-label">{c.name}</label>
             </div>
-          </li>
+          </div>
+          </div>
+
         ))}
       
     </>

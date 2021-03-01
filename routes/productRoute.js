@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 //findById method will let you look for userId 
-const { create, productById, read, remove, update, list, listRelated, listProductsCategories, listBySearch, photo} = require("../controllers/productsController");
+const { create, productById, read, remove, update, list, listRelated, listProductsCategories, listBySearch, photo, listSearch} = require("../controllers/productsController");
 const { userById } = require("../controllers/userController");
 const { requireSignin, isAuth, isAdmin } = require("../controllers/authController");
 
@@ -13,9 +13,12 @@ router.put('/product/update/:productId/:userId', requireSignin, isAuth, isAdmin,
 
 
 router.get('/products', list);
+router.get("/products/search", listSearch);
 router.get('/products/related/:productId', listRelated);
 router.get('/products/categories', listProductsCategories);
+router.post('/products/by/search', listBySearch)
 router.get('/product/photo/:productId', photo);
+
 
 
 /**

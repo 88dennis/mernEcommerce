@@ -10,6 +10,14 @@ import '../styles.css'
 const CardComp = ({ product }) => {
 
   const noProduct = product ? false : true;
+
+  const showStock = quantity => {
+    return quantity > 0 ? (
+      <span className="badge badge-primary badge-pill p-1.5">In Stock - {quantity} </span>
+    ) : (
+      <span className="badge badge-primary badge-pill p-1.5">Out of Stock - {quantity} </span>
+    );
+  };
   return (
 <>
        {!noProduct && <div className="col-12 col-sm-4 mb-2">
@@ -25,6 +33,12 @@ const CardComp = ({ product }) => {
               />
               <p>{product.description}</p>
               <p>${product.price}</p>
+
+        <p className="card-p  mt-2">{product.description.substring(0, 50)}... </p>
+        <p className="card-p black-10">$ {product.price}</p>
+        <p className="black-9">Category: {product.category && product.category.name}</p>
+        {/* <p className="black-8">Added on {moment(product.createdAt).fromNow()}</p> */}
+        {showStock(product.quantity)}
               {/* <Link to="/"><button className="btn btn-outline-primary mt-2 mb-2 btn-block btn-sm responsive-width">View Product</button></Link> */}
               <div className="container">
                 <Link to="/">

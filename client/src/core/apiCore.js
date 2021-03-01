@@ -1,5 +1,5 @@
 import { API } from "../config";
-
+import queryString from "query-string";
 
 export const getProducts = async (sortBy) => {
   //QUERY PARAMETERS CAN BE IN ANY ARRANGEMENT ON THE URL
@@ -19,6 +19,41 @@ export const getProducts = async (sortBy) => {
 export const getCategories = async () => {
   return await fetch(`${API}/categories`, {
       method: 'GET'
+  })
+      .then(response => {
+          return response.json();
+      })
+      .catch(err => console.log(err));
+};
+
+
+export const getFilteredProducts = async (skip, limit, filters = {}) => {
+  const data = {
+      limit,
+      skip,
+      filters
+  };
+  return await fetch(`${API}/products/by/search`, {
+      method: "POST",
+      headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+  })
+      .then(response => {
+          return response.json();
+      })
+      .catch(err => {
+          console.log(err);
+      });
+};
+
+export const list = async (params) => {
+  const query = queryString.stringify(params);
+  console.log("query", query);
+  return await fetch(`${API}/products/search?${query}`, {
+      method: "GET"
   })
       .then(response => {
           return response.json();
