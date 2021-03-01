@@ -40,7 +40,7 @@ const ShopComp = () => {
     await getProducts().then((data) => {
       if (data && data.error) {
         setError(data.error);
-      } else {
+      } else if (data) {
         setFilteredResults(data);
       }
     });
@@ -61,9 +61,9 @@ const ShopComp = () => {
   const loadFilteredResults = (newFilters) => {
     // console.log(newFilters);
     getFilteredProducts(skip, limit, newFilters).then((data) => {
-      if (data.error) {
+      if (data && data.error) {
         setError(data.error);
-      } else {
+      } else if (data) {
         console.log(data);
         setFilteredResults(data.data);
         setSize(data.size);
@@ -73,28 +73,28 @@ const ShopComp = () => {
   };
   const loadMoreButton = () => {
     return (
-        size > 0 &&
-        size >= limit && (
-            <button onClick={loadMore} className="btn btn-warning mb-5">
-                Load more
-            </button>
-        )
+      size > 0 &&
+      size >= limit && (
+        <button onClick={loadMore} className="btn btn-warning mb-5">
+          Load more
+        </button>
+      )
     );
-};
+  };
 
   const loadMore = () => {
     let toSkip = skip + limit;
     // console.log(newFilters);
-    getFilteredProducts(toSkip, limit, myFilters.filters).then(data => {
-        if (data.error) {
-            setError(data.error);
-        } else {
-            setFilteredResults([...filteredResults, ...data.data]);
-            setSize(data.size);
-            setSkip(toSkip);
-        }
+    getFilteredProducts(toSkip, limit, myFilters.filters).then((data) => {
+      if (data && data.error) {
+        setError(data.error);
+      } else if (data) {
+        setFilteredResults([...filteredResults, ...data.data]);
+        setSize(data.size);
+        setSkip(toSkip);
+      }
     });
-};
+  };
 
   const handleFiltersArr = (filters, filterBy) => {
     // console.log("SHOP", filters, filterBy);
@@ -117,9 +117,9 @@ const ShopComp = () => {
         init();
         // loadFilteredResults(skip, limit, myFilters.filters);
         getFilteredProducts(skip, limit, myFilters.filters).then((data) => {
-          if (data.error) {
+          if (data && data.error) {
             setError(data.error);
-          } else {
+          } else if (data) {
             setFilteredResults(data.data);
             setSize(data.size);
             setSkip(0);
@@ -136,6 +136,9 @@ const ShopComp = () => {
   // console.log(prices);
 
   const noCategories = !categories || (categories && categories.length === 0);
+  const noFilteredResults =
+    !filteredResults || (filteredResults && filteredResults.length === 0);
+
   const noSize = !size || (size && size.length === 0);
 
   return (
@@ -172,28 +175,28 @@ const ShopComp = () => {
           <div className="col-12 col-md-9">
             {/* <h2 className="mb-4">Products</h2> */}
 
-              {/* <h4 className="mb-4">
+            {/* <h4 className="mb-4">
                 {" "}
                 {size === 1
                   ? "Product (" + size + ")"
                   : "Products (" + size + ")"}
               </h4> */}
+            {!noFilteredResults && (
+              <>
+                <h4 className="mb-4">Products</h4>
+                {/* {noSize && <h4 className="mb-4">No products on this filter</h4>} */}
 
-              <h4 className="mb-4">
-               Products
-              </h4>
-            {/* {noSize && <h4 className="mb-4">No products on this filter</h4>} */}
-
-            <div className="row">
-              {filteredResults.map((product, i) => (
-                <CardComp product={product} />
-              ))}
-            </div>
-
+                <div className="row">
+                  {filteredResults.map((product, i) => (
+                    <CardComp product={product} />
+                  ))}
+                </div>
+              </>
+            )}
           </div>
 
           <hr />
-                    {loadMoreButton()}
+          {loadMoreButton()}
         </div>
       )}
     </LayoutComp>

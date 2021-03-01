@@ -29,6 +29,8 @@ const SearchComp = () => {
     loadCategories();
   }, []);
 
+  const noCategories = !data.categories || (data.categories && data.categories.length === 0);
+
   const searchData = () => {
     console.log(search, category);
     // if(search === undefined || search === "ALL" || search === "") {
@@ -52,6 +54,7 @@ const SearchComp = () => {
       );
     }
   };
+  const noResults = !data.results || (data.results && data.results.length === 0);
 
   const searchSubmit = (e) => {
     e.preventDefault();
@@ -79,7 +82,7 @@ const SearchComp = () => {
         <h2 className="mt-4 mb-4">{searchMessage(searched, results)}</h2>
 
         <div className="row">
-          {results.map((product, i) => (
+          {!noResults && results.map((product, i) => (
             <CardComp key={i} product={product} />
           ))}
         </div>
@@ -96,7 +99,7 @@ const SearchComp = () => {
          <div style={{display:"flex", justifyContent:"center", alignItems:"center", margin:"5px"}} >
          <select style={{height:"40px", padding:"5px", backgroundColor:"rgb(248,248,248", borderColor:"lightGray", borderRadius:"4px", outline:"none"}}className="" onChange={handleChange("category")}>
             <option value="All">All</option>
-            {categories.map((c, i) => (
+            {!noCategories && categories.map((c, i) => (
               <option key={i} value={c._id}>
                 {c.name}
               </option>
