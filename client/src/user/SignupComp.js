@@ -9,13 +9,14 @@ import "./SigninSignupComp.css";
 const SignupComp = () => {
   const [state, setState] = useState({
     name: "",
+    username: "",
     email: "",
     password: "",
     error: "",
     success: false,
   });
 
-  const { name, email, password, error, success } = state;
+  const { name, email, username, password, error, success } = state;
 
   function handleChange(inputVal) {
     return function (e) {
@@ -35,7 +36,7 @@ const SignupComp = () => {
     });
     //signup({ name: name, email: email, password: password})
     //import signup function from authClient
-    signup({ name, email, password }).then((data) => {
+    signup({ name, username, email, password }).then((data) => {
       console.log(data);
       if (data.error) {
         setState({
@@ -47,6 +48,8 @@ const SignupComp = () => {
         setState({
           ...values,
           name: "",
+          username: "",
+
           email: "",
           password: "",
           error: "",
@@ -76,6 +79,17 @@ const SignupComp = () => {
             className="form-control"
           />
         </div>
+        <div className="form-group">
+          <label className="text-muted">Username</label>
+          <input
+            type="text"
+            onChange={handleChange("username")}
+            //the || prevents the error for input controlled uncontrolled
+            value={username || ""}
+            className="form-control"
+          />
+        </div>
+
         <div className="form-group">
           <label className="text-muted">Email</label>
           <input

@@ -3,10 +3,14 @@ const _ = require("lodash");
 const fs = require("fs");
 const Product = require("../models/productModel");
 const { errorHandler } = require("../helpers/dbErrorHandler");
+const User = require("../models/userModel");
+
 
 //because of the "router.param('productId', productById);" in the productRoutes, the code below will run and create the req.product
 exports.productById = async (req, res, next, id) => {
-    await Product.findById(id).exec((err, product)=> {
+    await Product.findById(id)
+    .populate('category')
+    .exec((err, product)=> {
         if(err || !product) {
             return res.status(400).json({
                 error: 'Product not found'
@@ -26,10 +30,12 @@ exports.read = (req, res)=>{
 
 
 exports.create = (req, res) => {
+
+  console.log(req.params.userId, "USERIDDMS")
   console.log("products");
   let form = new formidable.IncomingForm();
   form.keepExtensions = true;
-  form.parse(req, (err, fields, files) => {
+  form.parse(req, async (err, fields, files) => {
     if (err) {
       return res.status(400).json({
         error: "Image could not be uploaded",
@@ -55,6 +61,19 @@ exports.create = (req, res) => {
 
     let product = new Product(fields);
     
+
+    await User.findById(id).exec((err, user)=> {
+      if(err || !user) {
+          return res.status(400).json({
+              error: 'User not found'
+          });
+      };
+      //create a field in the req.
+      //give the value of the user to the req
+      product.author = user.username;
+      product.author_email = user.username;
+
+  });
     //the "photo" comes from the client side so the name here should be the same
     if (files.photo) {
       //Console.log the files.photo to check its size so we can do some product validation
@@ -71,6 +90,9 @@ exports.create = (req, res) => {
       product.photo.contentType = files.photo.type;
     }
 
+
+
+console.log(product, "PRODUCTDMS")
     product.save((err, result) => {
       if (err) {
         return res.status(400).json({

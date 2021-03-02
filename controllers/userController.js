@@ -51,7 +51,6 @@ exports.update = async (req, res) => {
                 error: 'You are not authorized to perform this action'
             })
         }
-
         user.hashed_password = undefined;
         user.salt = undefined;
         res.json(user);

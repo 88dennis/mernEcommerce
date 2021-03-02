@@ -4,6 +4,8 @@ import SignupComp from "./user/SignupComp";
 import SigninComp from "./user/SigninComp";
 import HomeComp from "./core/HomeComp";
 import ShopComp from "./core/ShopComp";
+import ProductComp from "./core/ProductComp";
+
 
 import UserDashboard from "./user/UserDashboard";
 import AdminDashboard from "./user/AdminDashboard";
@@ -30,7 +32,7 @@ const Routes = () => {
           <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
           <AdminRoute path="/create/category" exact component={AddCategory} />
           <AdminRoute path="/create/product" exact component={AddProduct} />
-
+          <Route path="/product/:productId" exact component={ProductComp} />
 
         </Switch>
       </Router>

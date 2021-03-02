@@ -6,7 +6,7 @@ const { errorHandler } = require("../helpers/dbErrorHandler");
 
 // console.log(User)
 exports.signup = (req, res) => {
-  console.log(req.body);
+  console.log(req.body, "REQBODY");
   const user = new User(req.body);
   user.save((err, user) => {
     if (err) {
@@ -61,9 +61,9 @@ exports.signin = async (req, res) => {
 
     //return response with user and token to frontend client
 
-    const { _id, name, email, role } = user;
+    const { _id, name, email, username, role } = user;
 
-    return res.json({ token, user: { _id, name, email, role } });
+    return res.json({ token, user: { _id, name, email, username, role } });
   });
 
   //   User.find({}).then((users) => {

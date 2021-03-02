@@ -17,9 +17,9 @@ const SearchComp = () => {
 
   const loadCategories = () => {
     getCategories().then((data) => {
-      if (data.error) {
+      if (data && data.error) {
         console.log(data.error);
-      } else {
+      } else if(data) {
         setData({ ...data, categories: data });
       }
     });
@@ -45,9 +45,9 @@ const SearchComp = () => {
     if (search) {
       list({ search: search || undefined, category: category }).then(
         (response) => {
-          if (response.error) {
+          if (response && response.error) {
             console.log(response.error);
-          } else {
+          } else if(response) {
             setData({ ...data, results: response, searched: true });
           }
         }

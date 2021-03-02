@@ -77,10 +77,12 @@ const HomeComp = () => {
           <div className="row">
             {!noProductsBySell &&
               productsBySell.map((product) => (
+        <div key={product._id} className="col-12 col-md-4 mb-2">
                 <CardComp
-                  key={product._id}
                   product={product.sold === 0 ? null : product}
                 />
+          </div>
+
               ))}
           </div>
           <br />
@@ -98,7 +100,11 @@ const HomeComp = () => {
           <div className="row">
             {!noProductsByArrival &&
               productsByArrival.map((product) => (
+        <div key={product._id} className="col-12 col-md-4 mb-2">
+
                 <CardComp key={product._id} product={product} />
+          </div>
+
               ))}
           </div>
         </>

@@ -188,7 +188,10 @@ const ShopComp = () => {
 
                 <div className="row">
                   {filteredResults.map((product, i) => (
+        <div key={i} className="col-12 col-md-6 mb-2">
                     <CardComp product={product} />
+                </div>
+
                   ))}
                 </div>
               </>

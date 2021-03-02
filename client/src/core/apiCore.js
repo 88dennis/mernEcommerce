@@ -103,5 +103,26 @@ export const createCategory = async (userId, token, category) => {
   };
 
 
+  export const read = async (productId) => {
+    return await fetch(`${API}/product/${productId}`, {
+        method: "GET"
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+
+export const listRelated = async (productId) => {
+    return await fetch(`${API}/products/related/${productId}`, {
+        method: "GET"
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+
+
 
  

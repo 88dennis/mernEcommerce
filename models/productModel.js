@@ -9,6 +9,14 @@ const productSchema = new mongoose.Schema(
             required: true,
             maxlength: 32
         },
+        author: {
+            type: String,
+            maxlength: 255
+        },
+        author_email: {
+            type: String,
+            maxlength: 255
+        },
         description: {
             type: String,
             required: true,

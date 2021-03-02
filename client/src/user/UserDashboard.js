@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const UserDashboard = () => {
 
     //get the user to display in this component
-    const {user: {_id, name, email, role}} = isAuthenticated();
+    const {user: {_id, name, email, username, role}} = isAuthenticated();
     console.log(isAuthenticated())
 
     const userLinks = () => {
@@ -30,6 +30,8 @@ const UserDashboard = () => {
             <ul className="list-group">
                 <li className="list-group-item">{name}</li>
                 <li className="list-group-item">{email}</li>
+                <li className="list-group-item">{username}</li>
+
                 <li className="list-group-item">{role === 1 ? 'Admin' : 'Registered User'}</li>
             </ul>
 
